@@ -58,7 +58,7 @@ public class Board extends JPanel implements ActionListener,KeyListener {
 		g.setFont(new Font("System", Font.PLAIN, 10));
 		g.drawString("Ball Speed: " + ball_vel, 300, 440);
 		g.setFont(new Font("System", Font.ITALIC, 10));
-		g.drawString("Chandler Bone v1.1", 20, 470);
+		g.drawString("Chandler Bone v1.2", 20, 470);
 		
 		g.setFont(new Font("System", Font.PLAIN, 10));
 		
@@ -169,6 +169,7 @@ public class Board extends JPanel implements ActionListener,KeyListener {
 		else
 			ball_x -= ball_vel;
 			
+			
 	}
 	public void ball_p1goup(){
 		ball_x += ball_vel;
@@ -267,6 +268,11 @@ public class Board extends JPanel implements ActionListener,KeyListener {
 		ball_p2up = false;
 		ball_p2down = false;
 		
+		if (ball_side == true)
+			ball_side = false;
+		else if (ball_side == false)
+			ball_side = true;
+		
 		ball_x = 245;
 		ball_y = 245;
 		ball_vel = 1;
@@ -278,13 +284,15 @@ public class Board extends JPanel implements ActionListener,KeyListener {
 		p2_score = 0;
 		p1_y = 215;
 		p2_y = 215;
+		
+		ball_side = setRandomSide();
 	}
 	
 	public Boolean setRandomSide(){
-		if (ball_side == null)
+		//if (ball_side == null)
 			return Math.random() > .5;
-		else
-			return ball_side;
+		//else
+			//return ball_side;
 	}
 
 }

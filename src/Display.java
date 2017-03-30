@@ -3,9 +3,8 @@ import javax.swing.*;
 
 public class Display extends Canvas{
 	
-
 	/**
-	 * 
+	 * thanks eclipse
 	 */
 	private static final long serialVersionUID = 1L;
 	
