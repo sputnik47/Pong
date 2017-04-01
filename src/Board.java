@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 
 public class Board extends JPanel implements ActionListener,KeyListener {
 	
@@ -12,6 +13,10 @@ public class Board extends JPanel implements ActionListener,KeyListener {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	Sound noise = new Sound();
+    File death = new File("sounds/death.wav");
+    File ball_bounce = new File("sounds/bounce.wav");
+    
 	Timer tick = new Timer(15, this); //tick speed
 	
 	int p1_x = 5, p1_y = 215, p2_x = 480, p2_y = 215;
@@ -58,7 +63,7 @@ public class Board extends JPanel implements ActionListener,KeyListener {
 		g.setFont(new Font("System", Font.PLAIN, 10));
 		g.drawString("Ball Speed: " + ball_vel, 300, 440);
 		g.setFont(new Font("System", Font.ITALIC, 10));
-		g.drawString("Chandler Bone v1.2", 20, 470);
+		g.drawString("Chandler Bone v1.3", 20, 470);
 		
 		g.setFont(new Font("System", Font.PLAIN, 10));
 		
@@ -195,17 +200,21 @@ public class Board extends JPanel implements ActionListener,KeyListener {
 			ball_start = false;
 			ball_p1up = true;
 			ball_p2up = false;
-			ball_p2down = false;}
+			ball_p2down = false;
+			noise.playSound(ball_bounce);}
 			
 		if (ball_y_cent >= (p1_y + 41) && ball_y_cent <= (p1_y + 84)){
 			//System.out.print("p2bottom ");
 			ball_start = false;
 			ball_p1down = true;
 			ball_p2up = false;
-			ball_p2down = false;}
+			ball_p2down = false;
+			noise.playSound(ball_bounce);}
+		
 		
 		if (ball_vel == 1)
 			ball_vel = 2.25;
+		
 		
 		ball_vel += .25;
 	}
@@ -216,17 +225,20 @@ public class Board extends JPanel implements ActionListener,KeyListener {
 			ball_start = false;
 			ball_p2up = true;
 			ball_p1up = false;
-			ball_p1down = false;}
+			ball_p1down = false;
+			noise.playSound(ball_bounce);}
 		
 		if (ball_y_cent >= (p2_y + 41) && ball_y_cent <= (p2_y + 84)){
 			//System.out.print("p2bottom ");
 			ball_start = false;
 			ball_p2down = true;
 			ball_p1up = false;
-			ball_p1down = false;}
+			ball_p1down = false;
+			noise.playSound(ball_bounce);}
 		
 		if (ball_vel == 1)
 			ball_vel = 2.25;
+		
 		
 		ball_vel += .25;
 	}
@@ -256,6 +268,9 @@ public class Board extends JPanel implements ActionListener,KeyListener {
 	}
 	
 	public void next_round(){
+		
+		noise.playSound(death);
+		
 		if(ball_x <= 0)
 			p2_score += 1;
 		if(ball_x >= 500)
