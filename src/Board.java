@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.File;
 
 public class Board extends JPanel implements ActionListener,KeyListener {
 	
@@ -14,8 +13,8 @@ public class Board extends JPanel implements ActionListener,KeyListener {
 	private static final long serialVersionUID = 1L;
 
 	Sound noise = new Sound();
-    File death = new File("sounds/death.wav");
-    File ball_bounce = new File("sounds/bounce.wav");
+    String death = ("audio/death.wav");
+    String ball_bounce = ("audio/bounce.wav");
     
 	Timer tick = new Timer(15, this); //tick speed
 	
@@ -304,10 +303,8 @@ public class Board extends JPanel implements ActionListener,KeyListener {
 	}
 	
 	public Boolean setRandomSide(){
-		//if (ball_side == null)
 			return Math.random() > .5;
-		//else
-			//return ball_side;
 	}
+	
 
 }
